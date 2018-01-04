@@ -26,7 +26,7 @@ html
                             a(href='/logout') #{Tr("logout")}
                         
         div.filters
-            form.form-inline(action='/cad-veiculos')
+            form.form-inline(action='/list')
                 select#marca.form-control(name='marca')
                     option(value) Selecione a marca...
                     option(value='Outros') Outros
@@ -39,7 +39,6 @@ html
                     option(value='Nissan') Nissan
                     option(value='Citroen') Citroen
                     option(value='Volkswagen') Volkswagen
-                    br
                 select#modelo.form-control(name='modelo')
                     option(value) Selecione a modelo...
                     option(value='Outros') Outros
@@ -63,7 +62,6 @@ html
                     option(value='Voyage') Voyage
                     option(value='Zafira') Zafira
                     option(value='C3') C3
-                    br
                 select#combustivel.form-control(name='combustivel')
                     option(value) Selecione o Combustivel...
                     option(value='Alcool') Alcool
