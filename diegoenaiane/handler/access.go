@@ -10,6 +10,11 @@ import (
 	"github.com/DiegoSantosWS/diegoenaiane/repo"
 )
 
+func ListAccessPageVeic(ctx *context.Context) {
+	ctx.Data["rows"] = 0
+	ctx.HTML(http.StatusOK, "list")
+}
+
 func ListAccessPage(ctx *context.Context) {
 	ctx.Data["rows"] = 0
 	ctx.HTML(http.StatusOK, "list")

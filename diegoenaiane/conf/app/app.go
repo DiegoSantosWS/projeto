@@ -67,6 +67,8 @@ func SetupRoutes(app *macaron.Macaron) {
 		app.Get("/", handler.ListAccessPage)
 		app.Get("/list", handler.ListAcessBy)
 		app.Get("/logout", handler.Logout)
+		app.Get("/cad-veiculos", handler.ListAccessPageVeic)
+
 	}, auth.LoginRequired)
 	app.Get("/login", handler.LoginPage)
 	app.Post("/login", binding.BindIgnErr(context.Login{}), handler.BasicAuth)
