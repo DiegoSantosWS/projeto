@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Listado</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+<!-- Barra de navegacion -->
+<nav class="indigo accent-3" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Golang - Mysql - Jquery</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a href="/">Login</a></li>
+            <li><a href="/Listado">Listado</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+            <li><a href="/">Login</a></li>
+            <li><a href="/lista">Listado</a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<!-- Barra de navegacion -->
+
+
+<!--Seccion donde se crea la lista de personas -->
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <br><br>
+
+        <div class="row center" id="listado">
+
+        </div>
+        <br><br>
+
+    </div>
+</div>
+<!--Seccion donde se crea la lista de personas -->
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () { // Cuando la pagina termine de cargar
+
+        //Hacemos una  peticion via AJAX a nuestro Servidor golang
+        $.ajax({
+            type: "GET",
+            url: "/Listado", // Ruta de nuestro servidor que genera JSON
+            success: function (data) { // Si se hizo correctamente  ejecutara el siguiente codigo
+                //Creamos una variable donde guardamos html para crear nuestra tabla
+                var table = '<table class=" centered"><tr>' +
+                    '<th>Nombre</th>' +
+                    '<th>Apellido</th>' +
+                    '<th>Foto</th>' +
+                    '</tr>';
+                /**
+                 *  Por cada objeto de nuestro JSON seleccionamos el valor de cada uno de sus nodos y los metemos en una
+                 *  fila de la tabla
+                 */
+
+                $.each(data.Data, function (entryIndex, entry) {
+                    table += "<tr><td>" + this.Firstname + "</td><td>" + this.Lastname + "</td>" +
+                        "<td><img src='" + this.Picture + "'></td>";
+                });
+
+                // Cerramos la tabla
+                table += '</table>';
+
+                // Agregamos el codigo generado al div que nombramos como listado
+                $("#listado").append(table);
+            }
+        });
+    });
+</script>
+</body>
+</html>

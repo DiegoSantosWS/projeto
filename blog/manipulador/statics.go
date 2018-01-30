@@ -1,8 +1,6 @@
 package manipulador
 
-import (
-	"net/http"
-)
+import "net/http"
 
 // CssPrincipal carrega i arquivo, obs não está sendo usada
 func CssPrincipal(w http.ResponseWriter, r *http.Request) {
@@ -14,6 +12,7 @@ func Imagens1(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/imgs/ima1.jpg")
 }
 
+/*
 // Imagens2 carrega i arquivo, obs não está sendo usada
 func Imagens2(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/imgs/2.jpg")
@@ -23,3 +22,4 @@ func Imagens2(w http.ResponseWriter, r *http.Request) {
 func Imagens3(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "static/imgs/3.jpg")
 }
+*/
