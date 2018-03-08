@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <style type="text/css">
+            body{
+              margin: 0 auto;
+              padding: 0;
+              min-width: 100%;
+              font-family: sans-serif;
+            }
+            .content{
+              height: 100px;
+              font-size: 18px;
+              line-height: 30px;
+            }
+            .button{
+              text-align: center;
+              font-size: 18px;
+              font-family: sans-serif;
+              font-weight: bold;
+              padding: 0 30px 0 30px;
+            }
+            .button a{
+              color: #FFFFFF;
+              text-decoration: none;
+            }
+            
+            .tab_dados tr {
+                height: 50px;
+                border-bottom: 1px solid #000000;
+            }
+
+        </style>      
+    </head>
+<body>
+    <div class="container">
+        <p>Olá, tudo bem? </p>
+        <p>
+          {{.Nome}}</b> notamos que você não realiza uma compra conosco já fáz <b>{{.UltimaCompra}}</b> dias, bastante tempo né?
+        </p>
+        <p> O ultimo produto que você comprou foi <b>{{.Corpo}}</b>. </p>
+        <p>{{.Recomendacoes}}</p>
+        <hr>
+        <div class="row col-12">
+            <table class="tab_dados" style="width:100%;" >
+                {{range .produtos}}
+                <tr>
+                    <td><img src="http://casadecasa.sigonline.com.br/openged/{{.Img.String}}" width="200" height="200"></td>
+                    <td><a href="http://www.casadecasavirtual.com.br/detalhe-produto?cod={{.IDP}}" class="button">{{.Name}}</a></td>
+                </tr>
+                {{end}}
+            </table>
+        </div>
+        <p>At.</p>
+        <p>Comercial</p>
+        <p>Site: {{.Link}}</p>
+        <p><img src="{{.Att}}"></p>
+    </div>
+</body>
+</html>
