@@ -1,0 +1,32 @@
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os/exec"
+)
+
+func main() {
+
+	cmd := exec.Command("mysqldump", "-P3306", "-hlocalhost", "-uroot", "-p1234", "shortenerurl")
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if err := cmd.Start(); err != nil {
+		fmt.Println("Erro ao criar o arquivo")
+		log.Fatal(err)
+	}
+
+	bytes, err := ioutil.ReadAll(stdout)
+	if err != nil {
+		fmt.Println("Erro ao criar o arquivo")
+		log.Fatal()
+	}
+	err = ioutil.WriteFile("../bk/shorten.sql", bytes, 0644)
+	if err != nil {
+		panic(err)
+	}
+}
