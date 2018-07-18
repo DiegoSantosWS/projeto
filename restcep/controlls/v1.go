@@ -31,7 +31,6 @@ func Cep(w http.ResponseWriter, r *http.Request) {
 	resp, err := clients.Do(request)
 	if err != nil {
 		log.Fatal("[ERRO] Houve um erro ao abrir a pagina do servidor: ", err.Error())
-		return
 	}
 
 	defer resp.Body.Close()
@@ -45,8 +44,8 @@ func Cep(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatal("[ERRO] Houve um erro ao converter o retorno JSON do servidor. ERRO: ", err.Error())
 		}
-		//fmt.Println("Erro ao inserir", helpers.CheckCEP(dadosCEP.CEP))
-		helpers.InsertBD(dadosCEP)
+		helpers.VerificaDados(dadosCEP)
+
 		w.Header().Set("Content-Type", "application/json")
 		w.Write(corpo)
 	}

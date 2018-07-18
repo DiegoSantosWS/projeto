@@ -1,0 +1,31 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=cepwsite
+      - MYSQL_USER=root
+      - MYSQL_HOST=banco
+    image: wsphpseven
+    ports:
+      - 8182:80
+    restart: always
+    volumes:
+      - .:/var/www/html
+      #- .:/src/github.com/DiegoSantosWS/estudos-php
+    depends_on:
+      - banco
+  banco:
+    image: mysql:5
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=cepwsite
+      - MYSQL_USER=root
+      - MYSQL_HOST=banco
+    volumes:
+      - "data:/var/lib/mysql"
+volumes:
+  data:

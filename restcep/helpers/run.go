@@ -13,7 +13,7 @@ import (
 func Runn(r *mux.Router) {
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "3000"
+		port = "5000"
 	}
 	if err := http.ListenAndServe(fmt.Sprintf(":%s", port), r); err != nil {
 		log.Fatal("[ERRO RUNN] Erro ao instanciar o servidor")
